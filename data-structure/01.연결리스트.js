@@ -3,18 +3,17 @@
 class LinkedList {
   length = 0;
   head = null;
+  tail = null;
 
   add(value) {
     if (this.head) {
       // head가 있으면
-      let current = this.head;
-      while (current.next) {
-        // current.next가 null이 될때까지 반복
-        current = current.next; // next가 null인 노드를 찾아서 current로 지정
-      }
-      current.next = new Node(value); // 마지막 노드에 새로운 노드를 추가
+      this.tail.next = new Node(value); // tail의 다음 노드로 새로운 노드를 지정
+      this.tail.next.prev = this.tail; // 새로운 노드의 이전 노드로 tail로 지정
+      this.tail = this.tail.next; // 생성된 노드를 tail로 지정
     } else {
       this.head = new Node(value); // head가 없으면 새로운 노드를 만들어서 head로 지정
+      this.tail = this.head; // tail과 head를 일치시킴
     }
     this.length++;
     return this.length;
@@ -40,6 +39,10 @@ class LinkedList {
     const [prev, current] = this.#search(index);
     if (prev && current) {
       prev.next = current.next;
+      if (current === this.tail) {
+        // 삭제하고자 하는 노드가 tail일 때
+        this.tail = prev;
+      }
       this.length--;
       return this.length;
     } else if (current) {
@@ -55,6 +58,7 @@ class LinkedList {
 
 class Node {
   next = null;
+  prev = null;
   constructor(value) {
     this.value = value;
   }
