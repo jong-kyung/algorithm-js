@@ -19,7 +19,7 @@ class QueueLinkedList {
   }
 
   dequeue() {
-    if (this.head) {
+    if (this.length !== 0) {
       this.head = this.head?.next;
       this.length--;
       return this.head?.prev;
@@ -27,7 +27,9 @@ class QueueLinkedList {
   }
 
   peek() {
-    return this.head;
+    if (this.head) {
+      return this.head;
+    }
   }
 }
 
@@ -48,4 +50,4 @@ queue.enqueue(5);
 queue.dequeue();
 queue.dequeue();
 queue.peek();
-queue.peek();
+console.log(queue.peek());
