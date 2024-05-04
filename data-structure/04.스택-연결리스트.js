@@ -19,13 +19,17 @@ class StackLinkedList {
   }
 
   pop() {
-    this.tail = this.tail.prev;
-    this.length--;
-    return this.tail.next;
+    if (this.length !== 0) {
+      this.tail = this.tail.prev;
+      this.length--;
+      return this.tail.next;
+    }
   }
 
   top() {
-    return this.head;
+    if (this.tail) {
+      return this.tail;
+    }
   }
 }
 
