@@ -12,7 +12,7 @@
 // Degenerate(변질) : 모든 노드가 하나의 자식만 가지고 있는 트리
 // Balanced(균형) : 모든 노드의 왼쪽 서브트리와 오른쪽 서브트리의 높이 차이가 1 이하인 트리
 
-class BinarySearchTree {
+export class BinarySearchTree {
   root = null;
   length = 0;
 
@@ -143,19 +143,19 @@ class Node {
   }
 }
 
-const bst = new BinarySearchTree();
-bst.insert(8);
-bst.insert(10);
-bst.insert(3);
-bst.insert(1);
-bst.insert(14);
-bst.insert(6);
-bst.insert(7);
-bst.insert(4);
-bst.insert(13);
-console.log(bst.search(7));
-console.log(bst.search(5));
-bst.remove(8);
-bst.remove(10);
-console.log(bst.search(15)); // null
-bst.remove(4);
+// const bst = new BinarySearchTree();
+// bst.insert(8);
+// bst.insert(10);
+// bst.insert(3);
+// bst.insert(1);
+// bst.insert(14);
+// bst.insert(6);
+// bst.insert(7);
+// bst.insert(4);
+// bst.insert(13);
+// console.log(bst.search(7));
+// console.log(bst.search(5));
+// bst.remove(8);
+// bst.remove(10);
+// console.log(bst.search(15)); // null
+// bst.remove(4);
