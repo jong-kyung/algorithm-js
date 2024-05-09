@@ -116,7 +116,7 @@ class MaxHeap {
   }
 }
 
-const heap = new Heap();
+const heap = new MaxHeap();
 heap.insert(8);
 heap.insert(19);
 heap.insert(23);
