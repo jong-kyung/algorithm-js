@@ -12,7 +12,7 @@ class HashTable {
 
   insert(key, value) {
     // 시간복잡도 O(1)
-    const hash = hashF(key);
+    const hash = hashF(key, this.capa);
     if (!this.data[hash]) {
       this.data[hash] = [];
     }
@@ -21,7 +21,7 @@ class HashTable {
 
   serach(key) {
     // 시간복잡도 O(N/hash의 크기)
-    const hash = hashF(key);
+    const hash = hashF(key, this.capa);
     if (this.data[hash]) {
       for (let i = 0; i < this.data[hash].length; i++) {
         if (this.data[hash][i].key === key) {
@@ -34,7 +34,7 @@ class HashTable {
 
   update(key, value) {
     // 시간복잡도 O(N/hash의 크기)
-    const hash = hashF(key);
+    const hash = hashF(key, this.capa);
     if (this.data[hash]) {
       for (let i = 0; i < this.data[hash].length; i++) {
         if (this.data[hash][i].key === key) {
@@ -46,7 +46,7 @@ class HashTable {
 
   delete(key) {
     // 시간복잡도 O(N/hash의 크기)
-    const hash = hashF(key);
+    const hash = hashF(key, this.capa);
     if (this.data[hash]) {
       for (let i = 0; i < this.data[hash].length; i++) {
         if (this.data[hash][i].key === key) {
@@ -57,12 +57,17 @@ class HashTable {
   }
 }
 
-function hashF() {
-  return "";
+function hashF(key, mod) {
+  if (typeof key === "string") {
+    return key.split("").reduce((acc, cur) => acc + cur.charCodeAt(0), 0) % mod;
+  } // ['a', 'b', 'c'] => [97, 98, 99] => 294 % 30 = 24
+  if (typeof key === "number") {
+    return key % mod;
+  }
 }
 
 const ht = new HashTable(30);
-ht.insert(31, "hello");
+ht.insert("abc", "hello");
 ht.insert(61, "bye");
 ht.insert(83, true);
 ht.insert(115, 13);
